@@ -67,11 +67,11 @@ class Observation:
     @classmethod
     def from_row(cls, validated_row):
         return cls(
-            timestamp = validated_row["timestamp"]
-            heart_rate = validated_row["heart_rate"]
-            skin_response = validated_row["skin_response"]
-            temperature = validated_row["temperature"]
-            activity_level = validated_row["activity_level"]
+            timestamp = validated_row["timestamp"],
+            heart_rate = validated_row["heart_rate"],
+            skin_response = validated_row["skin_response"],
+            temperature = validated_row["temperature"],
+            activity_level = validated_row["activity_level"],
             signal_quality = validated_row["signal_quality"]
         )
 

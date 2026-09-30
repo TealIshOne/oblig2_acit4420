@@ -136,7 +136,7 @@ def SessionClass(session, hr_summary, skin_summary, temp_summary, activity_summa
 
     for label in  ("resting", "moderate activity", "high activity"):
         if majority(classification, label):
-            return label, f"majority metrics classified as {label}: {classification}"'
+            return label, f"majority metrics classified as {label}: {classification}"
 
     return "inconclusive", f"no majority among metric classification: {classification}"
 
