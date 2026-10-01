@@ -80,9 +80,6 @@ def classify_al(avg_al):
         return "high activity"
 
 
-
-
-
     
 
 def _reduction_fraction(values):
