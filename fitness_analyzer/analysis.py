@@ -22,7 +22,7 @@ TEMP_MOD_OFFSET = 0.35
 TEMP_HIGH_OFFSET = 0.30
 
 ACTIVITY_MOD_MAX = 0.35
-ACTIVITY_HIGH_MAX = 0.67
+ACTIVITY_HIGH_MAX = 0.75
 
 MIN_USABLE_OBS = 3
 
@@ -31,7 +31,7 @@ REC_ACT_VAL = 0.50
 ## --------------------------------------------------##
 
 def majority(val, target):
-    return val.count(target) >= len(val)/2
+    return val.count(target) > len(val)/2
   
 
 def summary(target_values):
@@ -114,8 +114,8 @@ def SessionClass(session, hr_summary, skin_summary, temp_summary, activity_summa
     if session.usable_count < MIN_USABLE_OBS:
         return (
             "innsufficient data"
-            f"only {session.usable_count} usable obervation(s)"
-            f"minimum amount of observations is {MIN_USABLE_OBS}"
+            f"only {session.usable_count} usable obervation(s)",
+            f"minimum amount of observations is {MIN_USABLE_OBS}",
         )
 
     is_recovery, recovery_Reason=recoveryDetection(session)

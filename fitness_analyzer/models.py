@@ -93,7 +93,7 @@ class Observation:
 
     @property
     def activity_level(self):
-        return self._activty_level
+        return self._activity_level
 
     @property
     def signal_quality(self):

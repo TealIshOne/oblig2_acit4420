@@ -52,6 +52,7 @@ def load_profiles(path):
                                                 field=None, reason=f"could not load profile row, {e}"))
         except csv.Error as e:
             raise csv.Error(f" Error reading {path}: {e}") from e
+    return paticipants, rejections
 
 
 

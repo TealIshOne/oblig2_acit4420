@@ -47,27 +47,27 @@ def write_temp_results(results):
 ##  ___________________individual checks _________________
 
 def test_resting_sessiom(results):
-    result=result["FIT-2026-001"]
+    result=results["FIT-2026-001"]
     assert result["classification"]=="resting", f"expected resting, got {result['classification']}"
     print("test_resting_session passed")
 
 def test_moderate_session(results):
-    result=result["FIT-2026-002"]
+    result=results["FIT-2026-002"]
     assert result["classification"]=="moderate activity", f"expected moderate activity, got {result['classification']}"
     print("test_moderate_session passed")
 
 def test_high_session(results):
-    result=result["FIT-2026-003"]
+    result=results["FIT-2026-003"]
     assert result["classification"]=="high activity", f"expected high activity, got {result['classification']}"
     print("test_high_session passed")
 
 def test_insufficient_data_session(results):
-    result=result["FIT-2026-004"]
+    result=results["FIT-2026-004"]
     assert result["classification"]=="insufficient data", f"expected insufficient data, got {result['classification']}"
     print("test_insufficient_data_session passed")
 
 def test_recovering_session(results):
-    result=result["FIT-2026-005"]
+    result=results["FIT-2026-005"]
     assert result["classification"]=="recovering", f"expected recovering, got {result['classification']}"
     print("test_recovering_session passed")    
 
