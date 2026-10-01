@@ -16,13 +16,13 @@ HR_MOD_OFFSET = 10
 HR_HIGH_OFFSET = 30
 
 SKIN_MOD_OFFSET = 0.30
-SKIN_HIGH_OFFSET = 0.55
+SKIN_HIGH_OFFSET = 0.60
 
-TEMP_MOD_OFFSET = 0.35
-TEMP_HIGH_OFFSET = 0.30
+TEMP_MOD_OFFSET = 0.30
+TEMP_HIGH_OFFSET = 0.40
 
 ACTIVITY_MOD_MAX = 0.35
-ACTIVITY_HIGH_MAX = 0.75
+ACTIVITY_HIGH_MAX = 0.70
 
 MIN_USABLE_OBS = 3
 
@@ -128,7 +128,7 @@ def SessionClass(session, hr_summary, skin_summary, temp_summary, activity_summa
         classify_hr(hr_summary["avg"], participant.Baseline_HR),
         classify_sr(skin_summary["avg"], participant.Baseline_Skin),
         classify_temp(temp_summary["avg"], participant.Baseline_Temp),
-        classify_al(skin_summary["avg"]),
+        classify_al(activity_summary["avg"]),
     ]
 
     for label in  ("resting", "moderate activity", "high activity"):
