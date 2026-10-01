@@ -2,7 +2,7 @@
 here is the oop area, this should have an optimal and shrunked down version of A1
 this module represents a single sensor reading
 """
-from validation import validate_participant_id, validate_session_id
+from fitness_analyzer.validation import validate_participant_id, validate_session_id
 
 
 class Participant:
@@ -26,7 +26,7 @@ class Participant:
             name= row.get("name",""),
             baseline_hr=float(row["baseline_heart_rate"]),
             baseline_skin=float(row["baseline_skin_response"]),
-            baseline_temp=float(row["baseline_temp"])
+            baseline_temp=float(row["baseline_temperature"])
         )
     
 
@@ -61,7 +61,7 @@ class Observation:
         self._heart_rate = heart_rate
         self._skin_response = skin_response
         self._temperature = temperature
-        self._activty_level = activity_level
+        self._activity_level = activity_level
         self._signal_quality = signal_quality
 
     @classmethod
@@ -113,7 +113,7 @@ class fitnessSession:
             raise TypeError(
                 f"expectied an Observation, got {type(observation).__name__}"
             )
-        self._observations.append(observation)
+        self._observation.append(observation)
 
 
     @property
@@ -129,12 +129,12 @@ class fitnessSession:
         return sorted(self._observation, key=lambda obs: obs.timestamp)
     
     @property
-    def obsCount(self):
+    def usable_count(self):
         return len(self._observation)
 
     @property
     def isEmpty(self):
-        return self.obsCount==0
+        return self.usable_count==0
 
     def values(self, metric_name):
         return[getattr(obs, metric_name) for obs in self._observation]

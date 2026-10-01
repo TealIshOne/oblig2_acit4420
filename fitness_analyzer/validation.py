@@ -13,7 +13,7 @@
 ## --------imported classes/libraries ------------##
 import re
 
-from exceptions import InvalidIdentifierError, InvalidRecordError
+from fitness_analyzer.exceptions import InvalidIdentifierError, InvalidRecordError
 
 ## ----------decoder parameters ----------##
 PARTICIPANT_ID_CODE=re.compile(r"^P\d{3}$")
@@ -24,14 +24,14 @@ VALID_RANGES={
     "heart_rate" : (35,205),
     "skin_response" : (0,None),
     "temperature" : (25,42),
-    "activety_level" : (0,1),
+    "activity_level" : (0,1),
     "signal_quality" : (0,1)
 }
 
 MIN_SIGNALQ=0.5
 
 REQUIRED_FIELDS =(
-    "session_id", "participant_id", "time_stamp",
+    "session_id", "participant_id", "timestamp", "heart_rate",
     "skin_response", "temperature", "activity_level",
     "signal_quality"
 )
@@ -64,7 +64,7 @@ def isRequiredField(row):
 def convertType(row):
     convertion_unit=dict(row)
     int_field= ("timestamp", "heart_rate")
-    float_field =("skin_rate", "temperature","activity_level", "signal_quality")
+    float_field =("skin_response", "temperature","activity_level", "signal_quality")
 
     for field in int_field:
         try:
@@ -90,7 +90,7 @@ def convertType(row):
 def isSignalQ(row):
     if row["signal_quality"] < MIN_SIGNALQ:
         raise InvalidRecordError(
-            reason= f"Poor signal quality, {row["signal_quality"]} bellow {MIN_SIGNALQ}",
+            reason= f"Poor signal quality, {row['signal_quality']} bellow {MIN_SIGNALQ}",
             field="signal_quality"
         )
     

@@ -9,10 +9,10 @@ class InvalidIdentifierError(ValueError):
         self.id_type=id_type
         self.excpected_pattern= expected_pattern
         message=(
-            f"invalid {id_type}: '{identifier}'",
+            f"invalid {id_type}: '{identifier}'"
             f"does not match excpected pattern {expected_pattern}"
         )
-        super().__init(message)
+        super().__init__(message)
 
 
 

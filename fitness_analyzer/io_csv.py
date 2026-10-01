@@ -6,9 +6,9 @@ lods CSV and creates instance of models.py
 import csv
 from pathlib import Path
 
-from exceptions import InvalidIdentifierError, InvalidRecordError
-from models import Participant, Observation, fitnessSession
-from validation import isValidRow
+from fitness_analyzer.exceptions import InvalidIdentifierError, InvalidRecordError
+from fitness_analyzer.models import Participant, Observation, fitnessSession
+from fitness_analyzer.validation import isValidRow
 
 
 class Rejection:
@@ -25,7 +25,7 @@ def _open_csv (path):
 
     try:
         return open(path, "r", encoding="utf-8", newline="")
-    except FileExistsError as e:
+    except FileNotFoundError as e:
         raise FileNotFoundError (f" could not find CSV file: {path}") from e
     except PermissionError as e:
         raise PermissionError (f" No persmission to read CSV file: {path}") from e
@@ -41,7 +41,7 @@ def load_profiles(path):
             for row_nr, row in enumerate(reader,start=2):
                 try:
                     participant = Participant.instanciate_row(row)
-                    paticipants[Participant.ID]=participant
+                    paticipants[participant.ID]=participant
                 except InvalidIdentifierError as e:
                     rejections.append(Rejection(source_file=path.name,
                                                  row_nr=row_nr, field=e.id_type,
@@ -72,8 +72,8 @@ def load_sessions(path,participants):
             for row_nr, row in enumerate(reader,start=2):
                 try:
                     validated=isValidRow(row,known_ids)
-                except InvalidIdentifierError as e:
-                    field=getattr(e, "field, None") or getattr(e, "id_type", None)
+                except (InvalidIdentifierError, InvalidRecordError) as e:
+                    field=getattr(e, "field", None) or getattr(e, "id_type", None)
                     reason=getattr(e, "reason", None) or str(e)
 
                     rejections.append(Rejection(source_file=path.name,
@@ -84,8 +84,8 @@ def load_sessions(path,participants):
                 if session_id not in sessions:
                     sessions[session_id]= fitnessSession(
                     session_id=session_id,
-                    participant=participants[validated["participannt_id"]])
-                observation=Observation.instanciate_row(validated)
+                    participant=participants[validated["participant_id"]])
+                observation=Observation.from_row(validated)
                 sessions[session_id].add_obs(observation)
 
 
