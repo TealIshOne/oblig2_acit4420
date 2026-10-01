@@ -102,7 +102,7 @@ def load_all_sessions(paths, participants):
         sessions, rejections, =load_sessions(path, participants)
         all_rejections.extend(rejections)
         for session_id, session in sessions.items():
-            if session not in all_sessions:
+            if session_id not in all_sessions:
                 all_sessions[session_id]=session
             else:
                 for obs in session.observations:
