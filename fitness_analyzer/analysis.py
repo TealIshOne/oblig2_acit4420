@@ -160,6 +160,7 @@ def analyseSession(session):
         "participant_id" : participant.ID,
         "usable_obs" : session.usable_count,
         "classification" : label,
+        "reason" : reason,
         "hr_min" : hr_summary["min"] if hr_summary else None,
         "hr_max" : hr_summary["max"] if hr_summary else None,
         "hr_avg" : hr_summary["avg"] if hr_summary else None,

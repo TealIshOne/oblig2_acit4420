@@ -51,7 +51,7 @@ def write_summary_csv(result, output_dir):
     field_names= [
         "session_id", "participant_id", "usable_obs",
         "classification", "reason", 
-        "hr_min", "hr_max", "hr_avg,"
+        "hr_min", "hr_max", "hr_avg",
         "skin_min", "skin_max", "skin_avg",
         "temp_min", "temp_max", "temp_avg",
         "activity_min", "activity_max", "activity_avg",
@@ -59,7 +59,7 @@ def write_summary_csv(result, output_dir):
 
     ]
     with open(path, "w", encoding="utf-8", newline="") as file:
-        writer=csv.DictReader(file, fieldnames=field_names)
+        writer=csv.DictWriter(file, fieldnames=field_names)
         writer.writeheader()
         for res in result:
             writer.writerow(res)
@@ -104,7 +104,7 @@ def write_report_txt(result, ourput_dir):
     """
     path = ourput_dir/"analysis_report.txt"
 
-    report_blocks =  build_report_text(result)
+    report_blocks =  [build_report_text(r) for r in result]
 
     with open(path, "w", encoding="utf-8") as file:
         file.write("\n\n".join(report_blocks))
@@ -124,7 +124,7 @@ def write_rejected(rejections, output_dir):
 
     else:
         lines=[
-            f"{r.source_file} (row {r.row_number}):"
+            f"{r.source_file} (row {r.row_nr}):"
             f"field={r.field}, reson={r.reason}"
             for r in rejects
         ]
