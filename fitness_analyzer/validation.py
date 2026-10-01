@@ -38,14 +38,14 @@ REQUIRED_FIELDS =(
 
 ## identifier validation functions ##
 
-def Valid_part_id(participant_id):
+def validate_participant_id(participant_id):
     if not PARTICIPANT_ID_CODE.fullmatch(participant_id):
         raise InvalidIdentifierError(
             participant_id, "participant_id",PARTICIPANT_ID_CODE.pattern
         )
     return(participant_id)
 
-def valid_ses_id(session_id):
+def validate_session_id(session_id):
     if not SESSION_ID_CODE.fullmatch(session_id):
         raise InvalidIdentifierError(
             session_id, "session_id", SESSION_ID_CODE.pattern
@@ -119,8 +119,8 @@ def isRowLen(row):
 def isValidRow(row, known_ids):
     isRowLen(row)
     isRequiredField(row)
-    Valid_part_id(row["participant_id"])
-    valid_ses_id(row["session_id"])
+    validate_participant_id(row["participant_id"])
+    validate_session_id(row["session_id"])
 
     if row["participant_id"] not in known_ids:
         raise InvalidRecordError(

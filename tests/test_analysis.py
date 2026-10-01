@@ -49,4 +49,59 @@ def write_temp_results(results):
 def test_resting_sessiom(results):
     result=result["FIT-2026-001"]
     assert result["classification"]=="resting", f"expected resting, got {result['classification']}"
+    print("test_resting_session passed")
 
+def test_moderate_session(results):
+    result=result["FIT-2026-002"]
+    assert result["classification"]=="moderate activity", f"expected moderate activity, got {result['classification']}"
+    print("test_moderate_session passed")
+
+def test_high_session(results):
+    result=result["FIT-2026-003"]
+    assert result["classification"]=="high activity", f"expected high activity, got {result['classification']}"
+    print("test_high_session passed")
+
+def test_insufficient_data_session(results):
+    result=result["FIT-2026-004"]
+    assert result["classification"]=="insufficient data", f"expected insufficient data, got {result['classification']}"
+    print("test_insufficient_data_session passed")
+
+def test_recovering_session(results):
+    result=result["FIT-2026-005"]
+    assert result["classification"]=="recovering", f"expected recovering, got {result['classification']}"
+    print("test_recovering_session passed")    
+
+
+def expected_keys(results):
+    expected_keys=[
+        "session_id", "participant_id", "usable_obs",
+        "classification", "reason", 
+        "hr_min", "hr_max", "hr_avg",
+        "skin_min", "skin_max", "skin_avg",
+        "temp_min", "temp_max", "temp_avg",
+        "activity_min", "activity_max", "activity_avg",
+        "signal_avg"
+    ]
+    for session_id, result in results.items():
+        missing= expected_keys - result.keys()
+        assert not missing, f"session {session_id} is missing keys: {missing}"
+    print("test_expected_keys passed")  
+
+
+
+##_______________run tests_____________________
+def run_all_tests():
+    results=load_results()
+    write_temp_results(results)
+    test_resting_sessiom(results)
+    test_moderate_session(results)
+    test_high_session(results)
+    test_insufficient_data_session(results)
+    test_recovering_session(results)
+    expected_keys(results)
+
+    print("all tests passed")
+
+
+if __name__=="__main__":
+    run_all_tests()
