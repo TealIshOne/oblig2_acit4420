@@ -41,7 +41,7 @@ REQUIRED_FIELDS =(
 def validate_participant_id(participant_id):
     if not PARTICIPANT_ID_CODE.fullmatch(participant_id):
         raise InvalidIdentifierError(
-            participant_id, "participant_id",PARTICIPANT_ID_CODE.pattern
+            participant_id, "participant_id", PARTICIPANT_ID_CODE.pattern
         )
     return(participant_id)
 
@@ -88,7 +88,7 @@ def convertType(row):
 
 
 def isSignalQ(row):
-    if row["signal_quality"] < MIN_SIGNALQ:
+    if row["signal_quality"] < MIN_SIGNALQ or row["signal_quality"] > 1.0:
         raise InvalidRecordError(
             reason= f"Poor signal quality, {row['signal_quality']} bellow {MIN_SIGNALQ}",
             field="signal_quality"
@@ -113,7 +113,7 @@ def isInRange(row):
 def isRowLen(row):
     if None in row or len(row)!=len(REQUIRED_FIELDS):
         raise InvalidRecordError(
-            reason=f"expected {len(REQUIRED_FIELDS)} fields, gor {len(row)}",
+            reason=f"expected {len(REQUIRED_FIELDS)} fields, got {len(row)}",
             field=None
         )  
 
