@@ -16,7 +16,7 @@ def suportive_messages(assign1):
               "a good rest is good for the soul!",
               "recorded data is insufficient :("
               ]
-    possible_assign=["resting", "moderate activity", "high activity", "recovery", "poor_quality"]
+    possible_assign=["resting", "moderate activity", "high activity", "recovering", "insufficient data"]
     if assign1 in possible_assign:
         if assign1==possible_assign[0]:
             return messages[0]

@@ -100,11 +100,13 @@ def isInRange(row):
         value=row[field]
         if low is not None and value<low:
             raise InvalidRecordError(
-                reason= f"{value} is out of range (bellow minimum boundary {low})"
+                reason= f"{value} is out of range (bellow minimum boundary {low})",
+                field=field
             )
         if high is not None and value> high:
             raise InvalidRecordError(
-                reason=f"{value} is out of range (above macimum boundary {high})"
+                reason=f"{value} is out of range (above macimum boundary {high})",
+                field=field
             )
 
 

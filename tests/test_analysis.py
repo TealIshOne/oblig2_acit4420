@@ -89,7 +89,9 @@ def expected_keys(results):
         assert not missing, f"session {session_id} is missing keys: {missing}"
     print("test_expected_keys passed")  
 
-
+def test_poor_signal_session_rejected(results):
+    assert "FIT-2026-005" not in results, "all rows have poor signal, so no session should exist"
+    print("test_poor_signal_session_rejected passed")
 
 ##_______________run tests_____________________
 def run_all_tests():
@@ -101,6 +103,7 @@ def run_all_tests():
     test_insufficient_data_session(results)
     test_recovering_session(results)
     expected_keys(results)
+    test_poor_signal_session_rejected(results)
 
     print("all tests passed")
 

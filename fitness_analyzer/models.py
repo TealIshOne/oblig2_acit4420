@@ -125,7 +125,7 @@ class fitnessSession:
         return self._participant
 
     @property
-    def observation(self):
+    def observations(self):
         return sorted(self._observation, key=lambda obs: obs.timestamp)
     
     @property
@@ -137,7 +137,7 @@ class fitnessSession:
         return self.usable_count==0
 
     def values(self, metric_name):
-        return[getattr(obs, metric_name) for obs in self._observation]
+        return[getattr(obs, metric_name) for obs in self.observations]
 
 
 
