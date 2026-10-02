@@ -26,7 +26,7 @@ ACTIVITY_HIGH_MAX = 0.70
 
 MIN_USABLE_OBS = 3
 
-REC_HR_VAL = 0.60
+REC_HR_VAL = 0.40
 REC_ACT_VAL = 0.50
 ## --------------------------------------------------##
 
@@ -113,14 +113,14 @@ def recoveryDetection(session):
 def SessionClass(session, hr_summary, skin_summary, temp_summary, activity_summary):
     if session.usable_count < MIN_USABLE_OBS:
         return (
-            "innsufficient data"
-            f"only {session.usable_count} usable obervation(s)",
+            "insufficient data",
+            f"only {session.usable_count} usable obervation(s),"
             f"minimum amount of observations is {MIN_USABLE_OBS}",
         )
 
     is_recovery, recovery_Reason=recoveryDetection(session)
     if is_recovery:
-        return "revovering", recovery_Reason
+        return "recovering", recovery_Reason
 
 
     participant=session.participant

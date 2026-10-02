@@ -64,12 +64,12 @@ def test_high_session(results):
 
 
 def test_recovering_session(results):
-    result=results["FIT-2026-005"]
+    result=results["FIT-2026-004"]
     assert result["classification"]=="recovering", f"expected recovering, got {result['classification']}"
     print("test_recovering_session passed")    
 
 def test_insufficient_data_session(results):
-    result=results["FIT-2026-004"]
+    result=results["FIT-2026-101"]
     assert result["classification"]=="insufficient data", f"expected insufficient data, got {result['classification']}"
     print("test_insufficient_data_session passed")
 
