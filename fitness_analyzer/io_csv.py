@@ -47,7 +47,7 @@ def load_profiles(path):
                                                  row_nr=row_nr, field=e.id_type,
                                                    reason=str(e)))
 
-                except (ValueError, KeyError) as e:
+                except (ValueError, KeyError, TypeError) as e:
                     rejections.append(Rejection(source_file=path.name, row_nr=row_nr,
                                                 field=None, reason=f"could not load profile row, {e}"))
         except csv.Error as e:
