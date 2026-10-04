@@ -79,12 +79,13 @@ def main():
     args_=parse_args()
     try:
         result, rejects=run(args_.profiles, args_.sessions, args_.output)
+        print_overview(result,rejects,args_.output)
     except (FileNotFoundError, PermissionError) as e:
         print(f"error {e}")
     except csv.Error as e:
         print(f"error: could not read csv file: {e}")
 
-    print_overview(result,rejects,args_.output)
+    
 
 
 if __name__ == "__main__":
