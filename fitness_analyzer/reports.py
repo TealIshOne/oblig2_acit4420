@@ -125,7 +125,7 @@ def write_rejected(rejections, output_dir):
     else:
         lines=[
             f"{r.source_file} (row {r.row_nr}):"
-            f"field={r.field}, reson={r.reason}"
+            f"field={r.field}, reason={r.reason}"
             for r in rejects
         ]
     with open(path, "w", encoding="utf-8") as file:

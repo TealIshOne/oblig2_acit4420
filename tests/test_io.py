@@ -28,7 +28,7 @@ SESSION_HEADER = [
 
 ##______
 
-def csv_wite(path, header, rows):
+def csv_write(path, header, rows):
     with open(path, "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(header)
@@ -60,7 +60,7 @@ def test_load_profiles():
 def test_load_profiles_with_invalid():
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "profiles.csv"
-        csv_wite(path, PROFILE_HEADER, [
+        csv_write(path, PROFILE_HEADER, [
             ["P001", "Good One", "68", "1.2", "32.4"],
             ["001", "Bad Id", "70", "1.1", "32.0"],       # row 3: bad id
             ["P002", "Bad Number", "abc", "1.10", "32.0"],  # row 4: not a number
@@ -79,7 +79,7 @@ def test_load_profiles_with_invalid():
 def test_load_profiles_rejects_short_row():
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "profiles.csv"
-        csv_wite(path, PROFILE_HEADER, [
+        csv_write(path, PROFILE_HEADER, [
             ["P001", "Good One", "68", "1.20", "32.4"],
             ["P002", "Short Row", "70"],  # row 3: too short
             ["P003", "Good Two", "63", "1.10", "32.3"],
