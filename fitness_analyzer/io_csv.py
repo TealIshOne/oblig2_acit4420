@@ -30,6 +30,7 @@ def _open_csv (path):
     except PermissionError as e:
         raise PermissionError (f" No persmission to read CSV file: {path}") from e
 
+
 def load_profiles(path):
     path=Path(path)
     paticipants=dict()
@@ -53,11 +54,6 @@ def load_profiles(path):
         except csv.Error as e:
             raise csv.Error(f" Error reading {path}: {e}") from e
     return paticipants, rejections
-
-
-
-
-
 
 
 
