@@ -36,7 +36,7 @@ EXPECTED_CLASSIFICATION = {
 
 }
 
-OUTPUT_FILES = ("analysis_summary.csv", "analysis_report.txt", "rejected_input.txt")
+OUTPUT_FILES = ("analysis_summary.csv", "analysis_report.txt", "rejected_records.txt")
 
 def csv_write(path, header, rows):
     with open(path, "w", newline="", encoding="utf-8") as file:

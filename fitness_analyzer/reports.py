@@ -113,10 +113,10 @@ def write_report_txt(result, ourput_dir):
 
 def write_rejected(rejections, output_dir):
     """
-    writes to rejected_input.txt
+    writes to rejected_records.txt
     """
 
-    path = output_dir/"rejected_input.txt"
+    path = output_dir/"rejected_records.txt"
 
     rejects= rejections
     if not rejects:
@@ -148,7 +148,7 @@ def read_report_text(output_dir):
 
 
 def read_reject(output_dir):
-    path= output_dir/ "rejected_input.txt"
+    path= output_dir/ "rejected_records.txt"
     with open(path, "r", encoding="utf-8") as file:
         return file.read()
 

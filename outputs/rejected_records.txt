@@ -1,0 +1,15 @@
+fitness_sessions.csv (row 26):field=signal_quality, reason=Poor signal quality, 0.34 bellow 0.5
+fitness_sessions.csv (row 27):field=signal_quality, reason=Poor signal quality, 0.29 bellow 0.5
+fitness_sessions.csv (row 28):field=signal_quality, reason=Poor signal quality, 0.25 bellow 0.5
+fitness_sessions.csv (row 29):field=signal_quality, reason=Poor signal quality, 0.31 bellow 0.5
+fitness_sessions.csv (row 30):field=signal_quality, reason=Poor signal quality, 0.28 bellow 0.5
+fitness_sessions_invalid.csv (row 3):field=heart_rate, reason=could not convert fast to int
+fitness_sessions_invalid.csv (row 4):field=participant_id, reason=invalid participant_id: '001'does not match excpected pattern ^P\d{3}$
+fitness_sessions_invalid.csv (row 5):field=activity_level, reason=missing required field
+fitness_sessions_invalid.csv (row 6):field=signal_quality, reason=1.4 is out of range (above macimum boundary 1)
+fitness_sessions_invalid.csv (row 7):field=session_id, reason=invalid session_id: 'FIT-26-102'does not match excpected pattern ^FIT-\d{4}-\d{3}$
+fitness_sessions_invalid.csv (row 8):field=participant_id, reason=unknown participant id, 'P999'
+fitness_sessions_invalid.csv (row 9):field=timestamp, reason=could not convert two to int
+fitness_sessions_invalid.csv (row 10):field=heart_rate, reason=-15 is out of range (bellow minimum boundary 35)
+fitness_sessions_invalid.csv (row 11):field=skin_response, reason=-0.5 is out of range (bellow minimum boundary 0)
+fitness_sessions_invalid.csv (row 12):field=signal_quality, reason=missing required field
