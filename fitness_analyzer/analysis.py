@@ -82,7 +82,7 @@ def classify_al(avg_al):
 
     
 
-def _reduction_fraction(values):
+def _reduction(values):
     peak= max(values)
     end=values[-1]
 
@@ -98,13 +98,13 @@ def recoveryDetection(session):
 
     if len(hr_values) < 2 or len(activity_values)<2:
         return False, "not enough observations to asses recovery"
-    hr_fraction= _reduction_fraction(hr_values)
-    activity_fraction= _reduction_fraction(activity_values)
-    isRecovery=(hr_fraction>=REC_HR_VAL and activity_fraction >=REC_ACT_VAL)
+    hr_reduction= _reduction(hr_values)
+    activity_reduction= _reduction(activity_values)
+    isRecovery=(hr_reduction>=REC_HR_VAL and activity_reduction >=REC_ACT_VAL)
 
     reason= ( 
-        f"heartrate recovered {hr_fraction:.0%} from peak"
-        f"activitylevels fell {activity_fraction:.0%} from peak"
+        f"heartrate recovered {hr_reduction:.0%} from peak"
+        f"activitylevels fell {activity_reduction:.0%} from peak"
     )
 
     return isRecovery, reason
